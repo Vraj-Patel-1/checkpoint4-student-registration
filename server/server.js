@@ -17,7 +17,12 @@ if (!JWT_SECRET || JWT_SECRET.length < 32) {
   throw new Error("Set a secure JWT_SECRET in your .env file");
 }
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:4173"
+  ]
+}));
 app.use(express.json());
 
 const DATA_FILE = new URL("./Data/students.json", import.meta.url);
